@@ -1,7 +1,7 @@
 services:
   configurator:
     environment:
-      PROJECT_CLONE_URL: https://github.com/mathieu-benoit/all-101-docker-intro
+      PROJECT_CLONE_URL: https://github.com/mathieu-benoit/labspace-all-101-docker-intro
 
   # workspace:
   #   # Override the default image if desired
