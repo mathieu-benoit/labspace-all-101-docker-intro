@@ -4,8 +4,4 @@ description: |
 
 sections:
   - title: Introduction
-    contentPath: .labspace/01-introduction.md
-  - title: Main Content 1
-    contentPath: .labspace/02-main-content.md
-  - title: Conclusion
-    contentPath: .labspace/03-conclusion.md
+    contentPath: .labspace/demo.md
