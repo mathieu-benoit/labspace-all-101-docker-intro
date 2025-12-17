@@ -1,5 +1,11 @@
 ## Setup
 
+TODOs:
+- Test `git clone` in subfolder
+- Setup script
+- Test Container issue
+- DCB
+
 ::variableDefinition[org]{prompt="What is your Docker Organization?"}
 
 ```bash terminal-id=main
@@ -19,4 +25,8 @@ shopt -s dotglob
 
 ```bash terminal-id=main
 docker build --sbom=true --provenance=mode=max .
+```
+
+```bash terminal-id=main
+npm install
 ```

@@ -1,27 +1,57 @@
 ## Demo #2 - Develop
 
-TODO: FIXME: delete the 2 postgres container
+## Run the apps and their dependencies
+
+![](.labspace/images/local-stack.png)
+
+Start the stack by running all of the services needed for the application.
 
 ```bash terminal-id=main
 docker compose up
 ```
 
-Go to the Demo Client in the browser: :tabLink[http://localhost:5173]{href="http://localhost:5173" title="Demo Client"}.
+The entire stack started and we don't need any cloud environments. No external data services. Everything is local and starts within seconds. It's all defined by this :fileLink[Compose file]{path="compose.yaml" line=1}, which is in my code repo and shared with the entire team.
 
+Go to the **Demo Client** in the browser: :tabLink[http://localhost:5173]{href="http://localhost:5173" title="Demo Client"}.
 
-```bash terminal-id=npm
-npm install
-```
+Start the **Backend** app:
 
 ```bash terminal-id=npm
 npm run dev
 ```
 
-Go to the Backend in the browser: :tabLink[http://localhost:3000]{href="http://localhost:3000" title="Backend"}.
+Go to the **Backend** in the browser: :tabLink[http://localhost:3000]{href="http://localhost:3000" title="Backend"}.
 
-Go to the Kafbat UI in the browser: :tabLink[http://localhost:8080]{href="http://localhost:8080" title="Kafbat UI"}. --> FIXME - page not loading
+Refresh the **Demo Client** in the browser: :tabLink[http://localhost:5173]{href="http://localhost:5173" title="Demo Client"}.
 
-Go to the pgAdmin in the browser: :tabLink[http://localhost:5050]{href="http://localhost:5050" title="pgAdmin"}.
+Click the "Create product" button. 
+
+This exercises the catalog service API to create a new product.
 
 
-:fileLink[src/services/ProductService.js]{path="src/services/ProductService.js" line=48}.
+Go to the [**Kafbat UI**](http://localhost:8080), and check the [topic in Kafka](http://localhost:8080/ui/clusters/local/all-topics/products/messages?limit=100&mode=LATEST) where the `upc` field is missing.
+
+Let’s at least make sure the database is set up correctly. Open the [**pgAdmin**](http://localhost:5050) tool.
+
+## Fix the issue
+
+In the :fileLink[src/services/ProductService.js]{path="src/services/ProductService.js" line=48} file, update the `publishEvent` call at line 53 to publish the `upc` field:
+
+```diff
+  publishEvent("products", {
+    action: "product_created",
+    id: newProductId,
+    name: product.name,
+    price: product.price,
+    description: product.description,
++   upc: product.upc,
+  });
+```
+
+Saving the file, you should see the console output indicate the server is restarting to use the latest code.
+
+Validate the fix.
+
+Create a new product in the client and confirm the UPC appears in the published Kafka message in the [**Kafbat UI**](http://localhost:8080).
+
+Congrats!

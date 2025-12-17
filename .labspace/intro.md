@@ -2,6 +2,8 @@
 
 👋 Welcome to the **[All 101] Docker Intro and Overview** Labspace!
 
+![](.labspace/images/sample-app.png)
+
 During this lab, you will learn to do the following:
 - Demo #1 - Run PostgreSQL
 - Demo #2 - Develop
