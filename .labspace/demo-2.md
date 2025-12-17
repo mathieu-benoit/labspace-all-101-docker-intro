@@ -35,7 +35,7 @@ Let’s at least make sure the database is set up correctly. Open the [**pgAdmin
 
 ## Fix the issue
 
-In the :fileLink[src/services/ProductService.js]{path="src/services/ProductService.js" line=48} file, update the `publishEvent` call at line 53 to publish the `upc` field:
+In the :fileLink[src/services/ProductService.js]{path="catalog-service-node/src/services/ProductService.js" line=53} file, update the `publishEvent` call at line 53 to publish the `upc` field:
 
 ```diff
   publishEvent("products", {

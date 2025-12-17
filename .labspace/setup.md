@@ -13,10 +13,7 @@ git clone https://github.com/dockersamples/catalog-service-node
 ```
 
 ```bash terminal-id=main
-shopt -s dotglob
-mv catalog-service-node/* ./
-rm -rf catalog-service-node
-shopt -s dotglob
+cd catalog-service-node
 ```
 
 ```bash terminal-id=main
@@ -24,9 +21,15 @@ shopt -s dotglob
 ```
 
 ```bash terminal-id=main
-docker build --sbom=true --provenance=mode=max .
+docker rm $(docker ps -a -q) -f
 ```
 
-```bash terminal-id=main
+```bash terminal-id=npm
+cd catalog-service-node
 npm install
+```
+
+```bash terminal-id=build
+cd catalog-service-node
+docker build --sbom=true --provenance=mode=max .
 ```

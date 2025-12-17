@@ -12,7 +12,7 @@ FROM node:18 AS base
 
 ### Build the container
 
-```bash
+```bash terminal-id=build
 docker build -t catalog-service --sbom=true --provenance=mode=max .
 ```
 
@@ -30,7 +30,6 @@ In the output we can note the build time and number of `CACHED` layers.
 We can also see the lint output and guiding us towards a Dockerfile that is aligned with best practices.
 
 ```none no-copy-button
- 2 warnings found (use docker --debug to expand):
+ 1 warning found (use docker --debug to expand):
  - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 38)
- - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 44)
 ```

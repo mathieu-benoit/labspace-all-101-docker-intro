@@ -2,7 +2,7 @@
 
 ### Scan the container image
 
-```bash
+```bash terminal-id=build
 docker scout quickview catalog-service --org $$org$$
 ```
 
@@ -47,13 +47,13 @@ FROM node:25-slim AS base
 
 Build a new container image version:
 
-```bash
+```bash terminal-id=build
 docker build -t catalog-service:slim --sbom=true --provenance=mode=max .
 ```
 
 See the differences between the two container images:
 
-```bash
+```bash terminal-id=build
 docker images catalog-service
 ```
 
@@ -63,7 +63,7 @@ catalog-service:latest   48806e62b871       1.62GB          413MB
 catalog-service:slim     8d03cef7a79f        368MB         84.1MB
 ```
 
-```bash
+```bash terminal-id=build
 docker scout quickview catalog-service:slim --org $$org$$
 ```
 
@@ -118,13 +118,13 @@ CMD ["node", "src/index.js"]
 
 Build a new container image version:
 
-```bash
+```bash terminal-id=build
 docker build -t catalog-service:dhi --sbom=true --provenance=mode=max .
 ```
 
 See the differences between the two container images:
 
-```bash
+```bash terminal-id=build
 docker images catalog-service
 ```
 
@@ -135,7 +135,7 @@ catalog-service:latest   48806e62b871       1.62GB          413MB
 catalog-service:slim     8d03cef7a79f        368MB         84.1MB
 ```
 
-```bash
+```bash terminal-id=build
 docker scout quickview catalog-service:dhi --org $$org$$
 ```
 
@@ -159,7 +159,7 @@ Policy status  SUCCEEDED  (7/7 policies met)
 
 ### Comparing the initial versus the DHI container images
 
-```bash
+```bash terminal-id=build
 docker scout compare --ignore-unchanged --to catalog-service catalog-service:dhi --org $$org$$
 ```
 

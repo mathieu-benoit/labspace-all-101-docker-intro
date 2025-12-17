@@ -2,9 +2,9 @@
 
 ### Update the test
 
-Open the file :fileLink[test/integration/productCreation.integration.spec.js]{path="test/integration/productCreation.integration.spec.js" line=18}.
+Open the file :fileLink[test/integration/productCreation.integration.spec.js]{path="catalog-service-node/test/integration/productCreation.integration.spec.js" line=18}.
 
-Add a new line :fileLink[at line 91]{path="test/integration/productCreation.integration.spec.js" line=91}, and add the following to the integration test to verify the field is included in the message when a new product is created:
+Add a new line :fileLink[at line 91]{path="catalog-service-node/test/integration/productCreation.integration.spec.js" line=91}, and add the following to the integration test to verify the field is included in the message when a new product is created:
 
 ```js
 upc: createdProduct.upc,
