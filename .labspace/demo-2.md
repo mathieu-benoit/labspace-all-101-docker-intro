@@ -1,6 +1,6 @@
 ## Demo #2 - Develop
 
-## Run the apps and their dependencies
+### Run the apps and their dependencies
 
 ![](.labspace/images/local-stack.png)
 
@@ -33,7 +33,7 @@ Go to the [**Kafbat UI**](http://localhost:8080), and check the [topic in Kafka]
 
 Let’s at least make sure the database is set up correctly. Open the [**pgAdmin**](http://localhost:5050) tool.
 
-## Fix the issue
+### Fix the issue
 
 An issue was found that we need to fix: [Add UPC code to product_created event](https://github.com/dockersamples/catalog-service-node/issues/19). 
 

@@ -51,7 +51,7 @@ Snapshots:   0 total
 Time:        17.333 s, estimated 19 s
 ```
 
-### Using TCC in CI
+### Use Test Containers in CI
 
 In your CI pipelines you can directly run these unit tests within your CI job runners or you can use the managed Test Containers Cloud (TCC) feature.
 

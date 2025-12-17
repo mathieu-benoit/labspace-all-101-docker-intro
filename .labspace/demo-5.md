@@ -32,12 +32,55 @@ Policy status  FAILED  (4/7 policies met)
   ✓      │ Supply chain attestations                      │    0 deviations
 ```
 
-## Use a smaller base image
+### Use a smaller base image
 
-Change the base image in the FROM in the :fileLink[Dockerfile]{path="Dockerfile" line=8} and save.
+Update the :fileLink[Dockerfile]{path="catalog-service-node/Dockerfile"} and save.
 
-```yaml
+```yaml save-as=catalog-service-node/Dockerfile
+###########################################################
+# Stage: base
+#
+# This stage serves as the base for all of the other stages.
+# By using this stage, it provides a consistent base for both
+# the dev and prod versions of the image.
+###########################################################
 FROM node:25-slim AS base
+
+# Setup a non-root user to run the app
+WORKDIR /usr/local/app
+RUN useradd -m appuser && chown -R appuser /usr/local/app
+USER appuser
+COPY --chown=appuser:appuser package.json package-lock.json ./
+
+
+###########################################################
+# Stage: dev
+#
+# This stage is used to run the application in a development
+# environment. It installs all app dependencies and will
+# start the app in a mode that will watch for file changes
+# and automatically restart the app.
+###########################################################
+FROM base AS dev
+ENV NODE_ENV=development
+RUN npm install
+CMD ["yarn", "dev-container"]
+
+
+###########################################################
+# Stage: final
+#
+# This stage serves as the final image for production. It
+# installs only the production dependencies.
+###########################################################
+FROM base AS final
+ENV NODE_ENV=production
+RUN npm ci --production --ignore-scripts && npm cache clean --force
+COPY ./src ./src
+
+EXPOSE 3000
+
+CMD [ "node", "src/index.js" ]
 ```
 
 ```diff no-copy-button
@@ -90,27 +133,54 @@ Policy status  FAILED  (6/7 policies met)
   ✓      │ Supply chain attestations                      │    0 deviations
 ```
 
-## Use Docker Hardened Image (DHI)
+### Use Docker Hardened Image (DHI)
 
-Change the :fileLink[Dockerfile]{path="Dockerfile" line=8} and save.
+Update the :fileLink[Dockerfile]{path="Dockerfile"} and save.
 
-```yaml
+```yaml save-as=catalog-service-node/Dockerfile
+###########################################################
+# Stage: base
+#
+# This stage serves as the base for all of the other stages.
+# By using this stage, it provides a consistent base for both
+# the dev and prod versions of the image.
+###########################################################
 FROM $$org$$/dhi-node:25-alpine3.22-dev AS base
-WORKDIR /usr/local/app
-COPY package.json package-lock.json ./
 
+# Setup a non-root user to run the app
+WORKDIR /usr/local/app
+RUN useradd -m appuser && chown -R appuser /usr/local/app
+USER appuser
+COPY --chown=appuser:appuser package.json package-lock.json ./
+
+
+###########################################################
+# Stage: dev
+#
+# This stage is used to run the application in a development
+# environment. It installs all app dependencies and will
+# start the app in a mode that will watch for file changes
+# and automatically restart the app.
+###########################################################
 FROM base AS dev
 ENV NODE_ENV=development
 RUN npm install
 CMD ["yarn", "dev-container"]
 
-FROM base AS production
+
+###########################################################
+# Stage: final
+#
+# This stage serves as the final image for production. It
+# installs only the production dependencies.
+###########################################################
+FROM base AS production-dependencies
 ENV NODE_ENV=production
 RUN npm ci --production --ignore-scripts && npm cache clean --force
 
 FROM $$org$$/dhi-node:25-alpine3.22 AS final
 ENV NODE_ENV=production
-COPY --from=production /usr/local/app/node_modules ./node_modules
+COPY --from=production-dependencies /usr/local/app/node_modules ./node_modules
 COPY ./src ./src
 EXPOSE 3000
 CMD ["node", "src/index.js"]

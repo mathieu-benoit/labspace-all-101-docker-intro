@@ -2,9 +2,9 @@
 
 ### Open the `Dockerfile`
 
-Open the :fileLink[Dockerfile]{path="Dockerfile" line=8}.
+Open the :fileLink[Dockerfile]{path="catalog-service-node/Dockerfile" line=8}.
 
-We are using a Docker Official Image as the base (yes, it's an older version of Node, but we'll come back to that later).
+We are using a Docker Official Image as the base (yes, it's an old version of Node, but we'll come back to that later).
 
 ```yaml no-copy-button
 FROM node:18 AS base
@@ -33,3 +33,15 @@ We can also see the lint output and guiding us towards a Dockerfile that is alig
  1 warning found (use docker --debug to expand):
  - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 38)
 ```
+
+### Use Docker Build Cloud
+
+![](.labspace/images/build-cloud.png)
+
+For a more consistent experience and to speed up your build times, locally and in your CI pipelines, you can use Docker Build Cloud.
+
+In the :fileLink[.github/workflows/pipeline-docker-cloud.yaml]{path="catalog-service-node/.github/workflows/pipeline-docker-cloud.yaml" line=143} workflow, we can see how to use Docker Build Cloud.
+
+We can compare two CI pipeline using or not using Docker Build Cloud, and see the optimizations generated:
+- [Pipeline run without DBC](https://github.com/dockersamples/catalog-service-node/actions/runs/19951688497) --> `Build and push image` --> `1m36s`
+- [Pipeline run with DBC](https://github.com/dockersamples/catalog-service-node/actions/runs/19951662735) --> `Build and push image` --> `51s`
