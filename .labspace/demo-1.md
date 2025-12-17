@@ -1,6 +1,6 @@
 ## Demo #1 - Run PostgreSQL
 
-Browse the catalog of Docker images on [hub.docker.com](https://hub.docker.com).
+Browse the catalog of Docker images on [hub.docker.com](https://hub.docker.com/explore).
 
 Search for and select the `postgres` page.
 
