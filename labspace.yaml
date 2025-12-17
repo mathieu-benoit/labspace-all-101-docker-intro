@@ -7,7 +7,7 @@ sections:
     contentPath: .labspace/intro.md
   - title: Setup
     contentPath: .labspace/setup.md
-  - title: "Demo #1 - Run PosgreSQL"
+  - title: "Demo #1 - Run PostgreSQL"
     contentPath: .labspace/demo-1.md
   - title: "Demo #2 - Develop"
     contentPath: .labspace/demo-2.md

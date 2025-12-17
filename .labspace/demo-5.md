@@ -8,15 +8,17 @@ docker scout quickview catalog-service --org $$org$$
 
 We can see that Docker Scout is highlighting the CVEs that the container image has and is even recommending a version of the base image to fix them.
 
-We can also see the status of the policies evaluated.
-
 ```none no-copy-button
   Target             │  catalog-service:latest  │    2C    26H    25M   122L     4?   
     digest           │  360db4f00cbd            │                                     
   Base image         │  node:18                 │    2C    26H    25M   122L     4?   
   Updated base image │  node:25-slim            │    0C     1H     2M    24L          
-                     │                          │    -2    -25    -23    -98     -4   
+                     │                          │    -2    -25    -23    -98     -4 
+```
 
+We can also see the status of the policies evaluated.
+
+```none no-copy-button
 Policy status  FAILED  (4/7 policies met)
 
   Status │                     Policy                     │           Results            
@@ -65,15 +67,18 @@ catalog-service:slim     8d03cef7a79f        368MB         84.1MB
 docker scout quickview catalog-service:slim --org $$org$$
 ```
 
-```none
+Improvements have been made in terms of number of CVEs:
+
+```none no-copy-button
   Target             │  catalog-service:slim  │    0C     2H     2M    24L   
     digest           │  23a9570bd754          │                              
   Base image         │  node:25-slim          │    0C     1H     2M    24L   
   Updated base image │  node:24-slim          │    0C     1H     2M    24L   
                      │                        │                              
+```
 
+```none no-copy-button
 Policy status  FAILED  (6/7 policies met)
-
   Status │                     Policy                     │           Results            
 ─────────┼────────────────────────────────────────────────┼──────────────────────────────
   ✓      │ Default non-root user                          │                              
@@ -139,7 +144,7 @@ Target     │  catalog-service:dhi                      │    0C     0H     1M
     digest   │  8e5de4cd5216                             │                              
   Base image │  demonstrationorg/dhi-node:25-alpine3.22  │                              
 
-Policy status  FAILED  (9/10 policies met)
+Policy status  SUCCEEDED  (7/7 policies met)
 
   Status │                              Policy                              │           Results            
 ─────────┼──────────────────────────────────────────────────────────────────┼──────────────────────────────
@@ -149,7 +154,7 @@ Policy status  FAILED  (9/10 policies met)
   ✓      │ No high-profile vulnerabilities                                  │    0C     0H     0M     0L   
   ✓      │ No unapproved base images                                        │    0 deviations              
   ✓      │ Supply chain attestations                                        │    0 deviations              
-  !      │ No outdated base images                                          │
+  ✓      │ No outdated base images                                          │
 ```
 
 ### Comparing the initial versus the DHI container images
