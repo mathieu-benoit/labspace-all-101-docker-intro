@@ -3,10 +3,11 @@
 👋 [All 101] Docker Intro and Overview Labspace!
 
 During this lab, you will learn to do the following:
-- Demo #1 - Running PosgreSQL
-- Demo #2 - Development
-- Demo #3 - Testing
-- Demo #4 - Buidling
+- Demo #1 - Run PosgreSQL
+- Demo #2 - Develop
+- Demo #3 - Test
+- Demo #4 - Build
+- Demo #5 - Secure
 
 ## Run this Labspace
 
