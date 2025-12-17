@@ -5,9 +5,13 @@ description: |
 sections:
   - title: Introduction
     contentPath: .labspace/intro.md
-  - title: "Demo #1"
+  - title: Setup
+    contentPath: .labspace/setup.md
+  - title: "Demo #1 - Running PosgreSQL"
     contentPath: .labspace/demo-1.md
-  - title: "Demo #2"
+  - title: "Demo #2 - Development"
     contentPath: .labspace/demo-2.md
-  - title: "Demo #3"
+  - title: "Demo #3 - Testing"
     contentPath: .labspace/demo-3.md
+  - title: "Demo #4 - Buidling"
+    contentPath: .labspace/demo-4.md

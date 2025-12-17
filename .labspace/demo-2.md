@@ -1,4 +1,4 @@
-## Demo #2
+## Demo #2 - Development
 
 TODO: FIXME: delete the 2 postgres container
 
