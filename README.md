@@ -1,6 +1,6 @@
 # [All 101] Docker Intro and Overview Labspace
 
-👋 [All 101] Docker Intro and Overview Labspace!
+👋 Welcome to the **[All 101] Docker Intro and Overview** Labspace!
 
 During this lab, you will learn to do the following:
 - Demo #1 - Run PosgreSQL
