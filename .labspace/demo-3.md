@@ -4,7 +4,7 @@ We just ran the integration tests with Docker Compose in order to test our appli
 
 Another complementary option is also to programmantically write these integration tests as unit tests. Very convenient for your Developers.
 
-Here enters Test Containers:
+Here enters Testcontainers:
 
 ![](.labspace/images/tcc.png)
 
@@ -51,9 +51,9 @@ Snapshots:   0 total
 Time:        17.333 s, estimated 19 s
 ```
 
-### Use Test Containers in CI
+### Use Testcontainers in CI
 
-In your CI pipelines you can directly run these unit tests within your CI job runners or you can use the managed Test Containers Cloud (TCC) feature.
+In your CI pipelines you can directly run these unit tests within your CI job runners or you can use the managed Testcontainers Cloud (TCC) feature.
 
 Open the file :fileLink[.github/workflows/pipeline-docker-cloud.yaml]{path="catalog-service-node/.github/workflows/pipeline-docker-cloud.yaml" line=88} to see how to integrate this TCC feature in your own CI pipelines:
 
