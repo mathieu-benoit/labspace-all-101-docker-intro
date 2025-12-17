@@ -1,6 +1,6 @@
 ## Demo #4 - Build
 
-### `Dockerfile`
+### Open the `Dockerfile`
 
 Open the :fileLink[Dockerfile]{path="Dockerfile" line=8}.
 

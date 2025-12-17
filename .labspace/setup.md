@@ -1,10 +1,10 @@
 ## Setup
 
 TODOs:
-- Test `git clone` in subfolder
-- Setup script
 - Test Container issue
 - DCB
+- DD
+- Standalone VS Code?
 
 ::variableDefinition[org]{prompt="What is your Docker Organization?"}
 

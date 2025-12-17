@@ -35,9 +35,21 @@ Let’s at least make sure the database is set up correctly. Open the [**pgAdmin
 
 ## Fix the issue
 
+An issue was found that we need to fix: [Add UPC code to product_created event](https://github.com/dockersamples/catalog-service-node/issues/19). 
+
+Challenge accepted!
+
+![](.labspace/images/upc-issue.png)
+
 In the :fileLink[src/services/ProductService.js]{path="catalog-service-node/src/services/ProductService.js" line=53} file, update the `publishEvent` call at line 53 to publish the `upc` field:
 
-```diff
+```js
+upc: createdProduct.upc,
+```
+
+Save the file.
+
+```diff no-copy-button
   publishEvent("products", {
     action: "product_created",
     id: newProductId,
@@ -48,10 +60,11 @@ In the :fileLink[src/services/ProductService.js]{path="catalog-service-node/src/
   });
 ```
 
-Saving the file, you should see the console output indicate the server is restarting to use the latest code.
+When saving the file, you should see the console output indicate the server is restarting to use the latest code.
 
-Validate the fix.
-
-Create a new product in the client and confirm the UPC appears in the published Kafka message in the [**Kafbat UI**](http://localhost:8080).
+Validate the fix:
+- Refresh the **Demo Client** in the browser: :tabLink[http://localhost:5173]{href="http://localhost:5173" title="Demo Client"}.
+- Create a new product in the client
+- Confirm that the `upc` field now appears in the published Kafka message in the [**Kafbat UI**](http://localhost:8080).
 
 Congrats!
