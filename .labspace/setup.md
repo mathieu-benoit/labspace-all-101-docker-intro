@@ -1,5 +1,7 @@
 ## Setup
 
+::variableDefinition[org]{prompt="What is your Docker Organization?"}
+
 ```bash terminal-id=main
 git clone https://github.com/dockersamples/catalog-service-node
 ```

@@ -1,4 +1,4 @@
-## Demo #3 - Testing
+## Demo #3 - Test
 
 ### Update the test
 

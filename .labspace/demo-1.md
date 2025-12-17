@@ -1,4 +1,4 @@
-## Demo #1 - Running PosgreSQL
+## Demo #1 - Run PosgreSQL
 
 ```bash terminal-id=main
 docker run -e POSTGRES_PASSWORD=dev -p 5432:5432 -d postgres:17.2 

@@ -1,8 +1,8 @@
-## Demo #4 - Building
+## Demo #4 - Build
 
 ### `Dockerfile`
 
-Open the :fileLink[Dockerfile]{path="Dockerfile" line=1}.
+Open the :fileLink[Dockerfile]{path="Dockerfile" line=8}.
 
 We are using a Docker Official Image as the base (yes, it's an older version of Node, but we'll come back to that later).
 
