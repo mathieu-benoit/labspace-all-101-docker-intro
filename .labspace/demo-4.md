@@ -1,25 +1,36 @@
 ## Demo #4 - Building
 
-### Update the test
+### `Dockerfile`
 
-Open the file :fileLink[test/integration/productCreation.integration.spec.js]{path="test/integration/productCreation.integration.spec.js" line=18}.
+Open the :fileLink[Dockerfile]{path="Dockerfile" line=1}.
 
-Add a new line :fileLink[at line 91]{path="test/integration/productCreation.integration.spec.js" line=91}, and add the following to the integration test to verify the field is included in the message when a new product is created:
+We are using a Docker Official Image as the base (yes, it's an older version of Node, but we'll come back to that later).
 
-```js
-upc: createdProduct.upc,
+```yaml no-copy-button
+FROM node:18 AS base
 ```
 
-Save the file.
+### Build the container
 
-```diff
-await kafkaConsumer.waitForMessage({
-     id: createdProduct.id,
-     action: "product_created",
-+    upc: createdProduct.upc,
-   });
+```bash
+docker build -t catalog-service --sbom=true --provenance=mode=max .
 ```
 
-### Using TCC in CI
+In the output we can note the build time and number of `CACHED` layers.
 
-FIXME - GHA worflow not copied
+```none no-copy-button
+ => CACHED [base 2/4] WORKDIR /usr/local/app                                                                                              0.0s
+ => CACHED [base 3/4] RUN useradd -m appuser && chown -R appuser /usr/local/app                                                           0.0s
+ => CACHED [base 4/4] COPY --chown=appuser:appuser package.json package-lock.json ./                                                      0.0s
+ => CACHED [final 1/2] RUN npm ci --production --ignore-scripts && npm cache clean --force                                                0.0s
+ => CACHED [final 2/2] COPY ./src ./src                                                                                                   0.0s
+ => CACHED [linux/amd64] generating sbom using docker.io/docker/buildkit-syft-scanner:stable-1
+ ```
+
+We can also see the lint output and guiding us towards a Dockerfile that is aligned with best practices.
+
+```none no-copy-button
+ 2 warnings found (use docker --debug to expand):
+ - LegacyKeyValueFormat: "ENV key=value" should be used instead of legacy "ENV key value" format (line 38)
+ - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 44)
+```
