@@ -4,4 +4,10 @@ description: |
 
 sections:
   - title: Introduction
-    contentPath: .labspace/demo.md
+    contentPath: .labspace/intro.md
+  - title: "Demo #1"
+    contentPath: .labspace/demo-1.md
+  - title: "Demo #2"
+    contentPath: .labspace/demo-2.md
+  - title: "Demo #3"
+    contentPath: .labspace/demo-3.md
