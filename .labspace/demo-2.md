@@ -44,7 +44,7 @@ Challenge accepted!
 In the :fileLink[src/services/ProductService.js]{path="catalog-service-node/src/services/ProductService.js" line=53} file, update the `publishEvent` call at line 53 to publish the `upc` field:
 
 ```js
-upc: createdProduct.upc,
+upc: product.upc,
 ```
 
 Save the file.

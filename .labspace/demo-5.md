@@ -149,9 +149,7 @@ FROM $$org$$/dhi-node:25-alpine3.22-dev AS base
 
 # Setup a non-root user to run the app
 WORKDIR /usr/local/app
-RUN useradd -m appuser && chown -R appuser /usr/local/app
-USER appuser
-COPY --chown=appuser:appuser package.json package-lock.json ./
+COPY package.json package-lock.json ./
 
 
 ###########################################################

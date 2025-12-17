@@ -17,6 +17,10 @@ psql -h localhost -p 5433 -U postgres
 ```
 
 ```bash terminal-id=psql1
+dev
+```
+
+```bash terminal-id=psql1
 select * from pg_stat_activity;
 ```
 
@@ -32,6 +36,10 @@ docker ps
 
 ```bash terminal-id=psql2
 psql -h localhost -p 5434 -U postgres
+```
+
+```bash terminal-id=psql2
+dev
 ```
 
 ```bash terminal-id=psql2
