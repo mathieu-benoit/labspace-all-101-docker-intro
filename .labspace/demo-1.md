@@ -9,7 +9,7 @@ See the various versions/tags available for the `postgres` image.
 Run and test a `postgres` container.
 
 ```bash terminal-id=pg1
-docker run -e POSTGRES_PASSWORD=dev -p 5433:5432 postgres:17.2 
+docker run -e POSTGRES_PASSWORD=dev -p 5433:5432 postgres:17.2
 ```
 
 ```bash terminal-id=psql1
